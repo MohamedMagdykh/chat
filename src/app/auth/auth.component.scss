@@ -152,7 +152,7 @@ input[type=submit]:hover,.btnlog {
   background: #222;
   color: white;
   min-width: 101%;
-  height: 47px;
+  height: auto;
   padding-top: 10px;
   bottom: 0px;
  
@@ -165,37 +165,46 @@ input[type=submit]:hover,.btnlog {
   margin-left: 450px;
 }
 .rowfooter{
-  margin-left: 100px;
+  // margin-left: 100px;
       margin-top: -17px;
 
 }
 /* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 1000px) {
-  .created{
+ @media screen and (max-width: 1000px) {
+   .created{
     
     margin-left: 14px;
 
   }
-  .rowfooter{
-    margin-left: 100px;
+  .divcover
+  {
+    h1
+    {
+      font-size: 2.4rem !important;
+
+    }
+
+  }
+  //  .rowfooter{
+  //    margin-left: 100px;
     
-    margin-top: -23px;
-    font-size: 13px;
-  }
+  //   margin-top: -23px;
+  //   font-size: 13px;
+  //  }
   .col {
-    width: 100%;
-    margin-bottom: 0;
-  }
+     width: 100%;
+     margin-bottom: 0;
+   }
   /* hide the vertical line */
-  .vl {
+   .vl {
     display: none;
-  }
-  /* show the hidden text on small screens */
+   }
+   /* show the hidden text on small screens */
   .hide-md-lg {
-    display: block;
-    text-align: center;
-  }
-  .h1{
+     display: block;
+     text-align: center;
+   }
+   .h1{
     font-size: 35px !important;
   }
-}
+ }
