@@ -1,0 +1,228 @@
+<nav class="navbar  navbaredite navbar-light bg-light" *ngIf="checklog==true">
+<div  class="col-10 userpicnav">
+  <div class="row">
+    <button class="BtnChange" (click)="GetImage()"  aria-hidden="true" data-toggle="modal" data-target="#ChangeProfilePhoto">
+      <img class="imglog" *ngIf="UserUrl != null" src="{{UserUrl}}" alt="">
+      <img class="imglog" *ngIf="UserUrl == null" src="../../assets/loguser.png">
+      <div class="imghover">Change</div>
+    </button>
+ 
+  <h2     class="username" data-toggle="modal" data-target="#ChangeUserName" style="color: white; margin-top: 4px;
+  margin-left: 1%;">{{Username}}</h2>
+</div>
+
+
+</div>
+<div class="col-1">
+  <button  class="btn btnlog btn-outline-danger  my-2 my-sm-0" style="    color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;" (click)="logout()" type="submit">LogOut</button>
+</div>
+
+</nav>
+
+
+<div class="editetop"></div>
+<div class="boxchat">
+<div *ngFor="let item of dataChats" >
+  <div style=" width: 100%; text-align:right; ">
+<div class="container darker editbeauty"  style="text-align: right;position: relative;;"*ngIf="item.mail == maillog" > 
+  <img *ngIf="item.urlimg==null || item.urlimg=='null' "    style="width: 50px;height: 50px;float: right;margin: auto;" src="../../assets/loguser.png">
+  <img *ngIf="item.urlimg!=null && item.urlimg!='null'"  style="width: 50px;height: 50px;float: right;margin: auto;" src="{{UserUrl}}">
+   <div style="    display: inline-block;">
+  <p class="lead" style="float: left; margin-right: 55px; ">{{item.chat}}</p>
+    
+    <div *ngIf="item.img!=null && item.img!='null'">
+    
+    
+      <img style="width: 150px;height: 150px;max-width: 150px;border-radius: 5%; margin-right: 72px;margin-bottom:10% ;"
+        src="{{item.img}}" alt="">
+      
+
+      <a   href="{{item.img}}" class="openfile" style="padding-right: 44px;margin-left: -222px;margin-top: 46px;">
+       open
+        
+      </a>
+  
+    </div>
+  </div>
+    
+    <span class="time-right" style="position: absolute;bottom: 5%;left: 5%;">{{item.date.num}}{{item.date.char}} <i class="fa fa-trash-o" data-toggle="modal" data-target="#deletemessage" (click)="idmessage(item.id)" deletemessage style="color: white;" aria-hidden="true"></i></span>
+    
+  </div>
+</div>
+  
+  <div class="container  editbeauty" *ngIf="item.mail != maillog" >
+    <img *ngIf="item.urlimg==null || item.urlimg=='null' " class=" right" style="width: 50px;height: 50px;float: left;margin: auto;" src="../../assets/loguser.png">
+    <img *ngIf="item.urlimg!=null && item.urlimg!='null'" class=" right"  style="width: 50px;height: 50px;float: left;margin: auto;" src="{{item.urlimg}}">
+    
+
+    <p class="lead" style="margin-left: 60px;
+    margin-top: 40px;">{{item.chat}}</p>
+   <div *ngIf="item.img!=null && item.img!='null'">
+    <img  style="width: 150px;
+    height: 150px;max-width: 150px;border-radius: 5%;"  src="{{item.img}}" alt="">
+    <a  href="{{item.img}}" class="openfile" > open</a>
+      </div>
+
+        <span class="time-left">{{item.date.num}}{{item.date.char}}</span>
+        
+      
+  </div>
+</div>
+</div>
+
+
+<div class="editebottom">x</div>
+
+  <div class="container" style="position: fixed;
+  bottom: -10px;
+padding-left: 65px;
+height: 100px;
+padding-top: 25px;
+width: 100%;
+max-width: 100%;
+background: #55ACEE!important;
+">
+
+    <div class="row" >
+      
+      <textarea class="col-9 textareaedite" [(ngModel)]="chat" style="height: 75px;
+      
+      margin-top: -12px;
+      "></textarea>
+      <i class="fa fa-paper-plane" (click)="addchat()" aria-hidden="true" style="
+      margin-left: 2%;"></i>
+      <i class="fa fa-paperclip" aria-hidden="false" style="
+      margin-left: 2%" data-toggle="modal" data-target="#addphoto"></i>
+
+     
+      
+    </div>
+
+    
+   
+    
+  </div>
+<!-- //////////////////////////////////////change Profile photo//////////////////// -->
+<div class="modal fade" style="padding-top: 90px;" id="ChangeProfilePhoto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Change Profile Photo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <label class="btn btn-default"> <input type="file"
+              (change)="SelectImg($event)">
+            </label>
+             
+            
+              
+            
+            
+          <div *ngIf="currentFileUpload" class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped"
+              role="progressbar" attr.aria-valuenow="{{percentage}}"
+              aria-valuemin="0" aria-valuemax="100"
+              [ngStyle]="{width:percentage+'%'}">
+              {{percentage}}%</div>
+          </div>
+      </div> 
+      <div class="modal-footer">
+        
+        <button type="button" id="closemodel" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button    class="btn btn-primary" [disabled]="!selectedFiles"
+                            (click)="DeleteProfileImg()">Upload</button>
+        <!-- <button type="button" class="btn btn-primary"   data-dismiss="modal" [disabled]="load==true">Save</button> -->
+        <div *ngIf="percentage==100 && load==true">
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+        <span >Loading...</span>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ////////////////////////////////changeUserName/////////////////////////////////////////////////////// -->
+<div class="modal fade" style="padding-top: 90px;" id="ChangeUserName" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Change UserName</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input class="form-control" [(ngModel)]="ChangeUserName"  type="text" placeholder="New UserName">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateUserName()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- //////////////////////////////////////add photo//////////////////// -->
+<div class="modal fade" style="padding-top: 90px;" id="addphoto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Change Profile Photo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <label class="btn btn-default"> <input type="file"
+              (change)="SelectImg($event)">
+            </label>
+             
+            
+              
+            
+            
+          <div *ngIf="currentFileUpload" class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped"
+              role="progressbar" attr.aria-valuenow="{{percentage}}"
+              aria-valuemin="0" aria-valuemax="100"
+              [ngStyle]="{width:percentage+'%'}">
+              {{percentage}}%</div>
+          </div>
+      </div> 
+      <div class="modal-footer">
+        
+        <button type="button" id="closemodel2" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button    class="btn btn-primary" [disabled]="!selectedFiles"
+                            (click)="AddImgchats()">Upload</button>
+        <!-- <button type="button" class="btn btn-primary"   data-dismiss="modal" [disabled]="load==true">Save</button> -->
+        <div *ngIf="percentage==100 && load==true">
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+        <span >Loading...</span>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ////////////////////////////////changeUserName/////////////////////////////////////////////////////// -->
+<div class="modal fade" style="padding-top: 90px;" id="deletemessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are You Sure You Want Delete Message
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" (click)="deleteMessage()" data-dismiss="modal" >Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

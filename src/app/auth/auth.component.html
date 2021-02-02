@@ -1,0 +1,221 @@
+<div class="bigdiv">
+    <div class="divcover">
+<div class="container">
+    <form action="/action_page.php">
+      <div class="row">
+        <h1 style="text-align:center ; color: white; 
+        font-family: Andale Mono;    width: 100%;     margin-top: 8%;">Login To Chat Room</h1>
+        
+  
+      
+        <div class=" col-12">
+  
+          <input type="text" name="username" [(ngModel)]="email"  placeholder="E-Mail" required style="margin-bottom: 4%;
+          margin-top: 6%;
+          width: 80%;
+        margin-left: 10%;
+        font-size: 23px;
+        text-align: center;
+          ">
+          <input  type="password" name="password" style="margin-bottom: 6%;
+              width: 80%;
+            margin-left: 10%;
+            font-size: 23px;
+            text-align: center;"
+     placeholder="Password"  [(ngModel)]="pass" >
+          <button class="btn btnlog" (click)=" LogIn()" type="submit"  style="    width: 60%;
+          margin-left: 20%;"
+         >LogIn</button>
+        </div>
+  
+      </div>
+    </form>
+  </div>
+  
+  <div class="bottom-container">
+    <div class="row">
+        
+      <div class="col">
+        <a  data-toggle="modal" data-target="#Signin"style="color:white"  class="btn">Sign up</a>
+      </div>
+      <div class="col">
+        <a href="#" style="color:white" data-toggle="modal" data-target="#ConfirmEmail" class="btn">Forgot password?</a>
+      </div>
+    </div>
+  </div>
+  <div class="copyright ">
+    <div class="container">
+      <div class="row rowfooter" >
+        <div>Copyright &copy; 2020  <span class="chatRoom">Chat Room</span> .inc </div>
+        <div class="created">Created By : <span class="chatRoom">Mohamed Magdy</span>  </div>
+
+      </div>
+      
+      
+             
+      </div>
+      
+    </div>
+   
+  
+  </div>
+</div>
+
+
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="container" >
+      
+        <!-- Modal Signin In  -->
+        <div class="modal fade" id="Signin" role="dialog" >
+          <div class="modal-dialog">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3>SignIn</h3>
+                <button type="button" class="close"  data-dismiss="modal">&times;</button>
+                
+               
+              </div>
+              <div class="modal-body" style="overflow: visible;">
+                
+  
+                <section class="ContactUs">
+                  <div class="DarkFrame">
+                  <div class="container">
+                  <div class="text-center" >
+                   
+                      <i class="fa fa-user-o fa-3x  text-center" ></i>
+                    </div>
+                    
+              
+                    
+                            
+                                <div class="form-row">
+                                    
+                                    <div class="form-group col-12">
+                                        
+                                        <input placeholder="UserName" [(ngModel)]="UserName" type="text" formControlName="UserName" class="form-control text-center inputcontact" [ngClass]="{ 'is-invalid': submitted && f.UserName.errors }" />
+                                        <div *ngIf="submitted && f.UserName.errors" class="invalid-feedback">
+                                            <div *ngIf="f.UserName.errors.required"> UserName is required</div>
+                                        </div>
+                                    </div>
+                                 
+                                </div>
+                                <div class="form-group">
+                                    
+                                    <input placeholder="Email" type="text" [(ngModel)]="SignInMail" formControlName="email" class="form-control text-center inputcontact" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                        <div *ngIf="f.email.errors.required">Email is required</div>
+                                        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                    </div>
+                                </div>
+                                
+                                    <div class="form-group ">
+                                        
+                                        <input placeholder="Password" [(ngModel)]="SignInpassword" type="password" formControlName="password" class="form-control text-center inputcontact" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                            <div *ngIf="f.password.errors.required">Password is required</div>
+                                            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        
+                                        <input placeholder="Confirm Password" [(ngModel)]="RePassword" type="password" formControlName="confirmPassword" class="form-control text-center inputcontact" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+                                        <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                                            <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+                                            <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+                                        </div>
+                                    </div>
+                               
+           
+                           
+                        </div>
+                    </div>
+                
+                </section>
+             
+              </div>
+             
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default col-6" data-dismiss="modal" id="reset" type="reset" (click)="onReset()" >Close</button>
+                <button type="submit" class="btn btn-default BtnAddcreate col-6"    >Create</button>
+             
+              </div>
+            </div>
+            
+          </div>
+        </div>
+    
+      </div>
+    
+    </form>
+
+
+    <form #ConfirmEmail="ngForm">
+        <div class="container" >
+          
+            <!-- Modal ForgetPassword -->
+            <div class="modal fade" id="ConfirmEmail" role="dialog" >
+              <div class="modal-dialog">
+              
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h3>Forget Password</h3>
+                    <button type="button" class="close"  data-dismiss="modal">&times;</button>
+                    
+                   
+                  </div>
+                  <div class="modal-body">
+                    
+      
+                    <section class="ContactUs">
+                      <div class="DarkFrame">
+                      <div class="container">
+                        <form role="form-inline">
+                          <div class="container">
+                          <div class="row">
+                          
+                            <input class="form-control inputcontact " name="mail" 
+                            [(ngModel)]="EmailResetPassword" type="text" email="true" placeholder="E-mail"
+                             required  #mailConfirm="ngModel" >
+                            <div *ngIf="mailConfirm.invalid && (mailConfirm.dirty || mailConfirm.touched)"
+                            class="alert alert-danger">
+                                <div *ngIf="mailConfirm.errors.required">
+                                  Required E-mail
+                                </div>
+                                <div *ngIf="mailConfirm.errors?.email">
+                                  Please Provide A Valid Email Address
+                                </div>
+                               
+                             </div>
+                           
+                        
+                        </div>
+                        </div>
+                        </form>
+                      </div>
+                    </div>
+                    </section>
+                 
+                   
+        
+                    
+                    
+                  </div>
+                 
+                   
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default col-6"  data-dismiss="modal" >Close</button>
+                    <button type="submit" class="btn btn-default BtnAddcreate col-6" (click)="send_Password_ResetEmail()"  [disabled]="mailConfirm.invalid" data-dismiss="modal"  >Confirm</button>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+        
+          </div>
+        
+        </form>
+

@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/simplechat",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
